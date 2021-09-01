@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Pages } from "../components/Pages";
+import { Environment, OrbitControls } from "@react-three/drei";
 import state from "../store";
 import { Html } from "./Html";
 import { Block } from "./Block";
@@ -47,18 +48,9 @@ export default function App() {
       >
         <Portal.Provider value={domContent}>
           <Suspense fallback="i">
-            {/* <Block factor={1.5} offset={0}>
-          <Html center portal={domContent}>
-              <h2>section 1</h2>
-          </Html>          
-        </Block>
-        <Block factor={2.5} offset={1}>
-          <Html center portal={domContent}>
-              <h2>section 1</h2>
-          </Html>          
-        </Block> */}
             <Pages />
-            {/* <Startup /> */}
+            <OrbitControls />
+            <Environment preset="sunset" />
           </Suspense>
         </Portal.Provider>
       </Canvas>

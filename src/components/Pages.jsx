@@ -6,6 +6,7 @@ import { Block, useBlock } from "./Block"
 import state from "../store"
 import "../utils/CustomMaterial";
 import { Html } from './Html';
+import Building from './Building';
 
 function Plane({ color = "white", map, ...props }) {
     const { viewportHeight, offsetFactor } = useBlock()
@@ -40,10 +41,10 @@ function Content({ left, children, map }) {
 
 function Stripe() {
     const { contentMaxWidth } = useBlock()
-    return <Plane scale={[100, contentMaxWidth, 1]} rotation={[0, 0, Math.PI / 4]} position={[0, 0, -1]} color="#e3f6f5" />
+    return <Plane scale={[100, contentMaxWidth, 1]} rotation={[0, 0, Math.PI / 4]} position={[0, 0, -1]} color="#da0d07" />
   }
 
-export function Pages({ portal }) {
+export function Pages() {
     const textures = useLoader(TextureLoader, state.images)
     const [img1, img2, img3] = textures.map(texture => ((texture.minFilter = LinearFilter), texture))
     const { contentMaxWidth, mobile } = useBlock()
@@ -53,9 +54,10 @@ export function Pages({ portal }) {
       <>
         {/* First section */}
         <Block factor={1.5} offset={0}>
-          <Content map={img1}>
+          <Content map={img2}>
+            <Building scale={[0.8, 0.8, 0.8]} />
             <Html>
-              <h1>Beton es una empresa constructora que hace realidad tus ideas</h1>
+              <h1><span style={{ color: "#da0d07" }}>Betón</span></h1><h2> es una empresa constructora que hace realidad tus ideas</h2>
             </Html>
             {/* <Dom style={{ width: pixelWidth / (mobile ? 1 : 2), textAlign: "left" }} position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
               The substance can take you to heaven but it can also take you to hell.
@@ -64,7 +66,8 @@ export function Pages({ portal }) {
         </Block>
         {/* Second section */}
         <Block factor={2.0} offset={1}>
-          <Content map={img2}>
+          <Content map={img1}>
+            
           <Html>
               <h1>Desde los cimientos</h1>
             </Html>
