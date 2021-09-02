@@ -10,8 +10,6 @@ import { Canvas } from "@react-three/fiber";
 import { Pages } from "../components/Pages";
 import { Environment, OrbitControls } from "@react-three/drei";
 import state from "../store";
-import { Html } from "./Html";
-import { Block } from "./Block";
 
 const Portal = createContext(null);
 
@@ -58,7 +56,7 @@ export default function App() {
         className="scrollArea"
         ref={scrollArea}
         onScroll={onScroll}
-        {...events}
+        // {...events}
       >
         <div style={{ position: "sticky", top: 0 }} ref={domContent} />
         <div style={{ height: `${state.pages * 100}vh` }}></div>

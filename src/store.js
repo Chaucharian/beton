@@ -5,7 +5,7 @@ const state = {
   sections: 9,
   pages: 8,
   zoom: 75,
-  images: ["/static/image1.jpeg", "/static/image2.jpeg", "/static/image3.jpeg"],
+  images: ["/static/image1.jpeg", "/static/image2.jpeg", "/static/image3.jpeg", "/static/image4.jpeg", "/static/image5.jpeg", "/static/image6.jpeg"],
   paragraphs: [
     {
       offset: 1,
