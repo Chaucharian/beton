@@ -8,9 +8,10 @@ import "../utils/CustomMaterial";
 import { Html } from "./Html";
 import { Helmet, Building } from "./models";
 import { Title, Subtitle } from "./typography";
-import ArrowDown from './ArrowDown';
+import ArrowDown from "./ArrowDown";
 import MountEffect from "./MountEffect";
 import { styled } from "styled-components";
+import Form from './Form';
 
 function Plane({ color = "white", map, ...props }) {
   const { viewportHeight, offsetFactor } = useBlock();
@@ -103,8 +104,8 @@ export function Pages() {
           >
             <Title primary>Betón</Title>
           </MountEffect>
-          <div style={{ position: 'absolute', left: "50%", bottom: "10%" }}>
-          <ArrowDown />
+          <div style={{ position: "absolute", left: "50%", bottom: "10%" }}>
+            <ArrowDown />
           </div>
         </Html>
         {/* </Content> */}
@@ -113,14 +114,11 @@ export function Pages() {
       {/* Second section */}
       <Block factor={2.0} offset={1}>
         <Html style={{ margin: "5%", textAlign: "left" }}>
-        <MountEffect>
-          <Subtitle>Diseñamos tus ideas</Subtitle>
-        </MountEffect>
+          <MountEffect>
+            <Subtitle>Diseñamos tus ideas</Subtitle>
+          </MountEffect>
         </Html>
-        <Building 
-         position={[contentMaxWidth, -4, -10]}
-        scale={1 / 2575} 
-        />
+        <Building position={[contentMaxWidth, -4, -10]} scale={1 / 2575} />
         {/* <Content map={img1}>
           <Building scale={1 / 2575} />
         </Content> */}
@@ -137,9 +135,10 @@ export function Pages() {
         <Content left map={img4}></Content>
         <Stripe />
       </Block>
+      
       {/* Last section */}
       <Block factor={1.5} offset={3}>
-      <Html style={{ textAlign: "right", margin: "5%" }}>
+        <Html style={{ textAlign: "right", margin: "5%" }}>
           <Subtitle>Con el personal más capacitado</Subtitle>
         </Html>
         <Content left map={img3}>
@@ -149,9 +148,13 @@ export function Pages() {
             </Dom> */}
         </Content>
       </Block>
+
       <Block factor={1.5} offset={4}>
-      <Html style={{ textAlign: "center" }}>
+        <Html style={{ textAlign: "center" }}>
           <Subtitle>Contanos tu idea</Subtitle>
+          <div style={{ display: "flex", justifyContent: "center"}}>
+          <Form onSubmit={() => {}} />
+          </div>
         </Html>
       </Block>
     </>
