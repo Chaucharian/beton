@@ -22,9 +22,8 @@ export function Html({ className, style, children, portal: parentPortal, props }
         width: size.width,
         height: size.height,
       }}
-      {...props}
     >
-      <div className={className} style={style}>
+      <div className={className} style={{...style}}>
         {children}
       </div>
     </HTML>

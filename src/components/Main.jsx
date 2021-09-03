@@ -63,7 +63,7 @@ export default function App() {
         onScroll={onScroll}
         // {...events}
       >
-        <div style={{ position: "sticky", top: 0 }} ref={domContent} />
+        <div style={{ position: "sticky", top: 0 }} ref={domContent}></div>
         <div style={{ height: `${state.pages * 100}vh` }}></div>
       </div>
     </>

@@ -9,7 +9,7 @@ import { Html } from "./Html";
 import { Helmet, Building } from "./models";
 import { Title, Subtitle } from "./typography";
 import MountEffect from "./MountEffect";
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 function Plane({ color = "white", map, ...props }) {
   const { viewportHeight, offsetFactor } = useBlock();
@@ -84,40 +84,47 @@ export function Pages() {
     <>
       {/* First section */}
       <Block factor={1.5} offset={0}>
-        <Helmet position={[-contentMaxWidth / 2,2, -2]} scale={[0.0095, 0.0095, 0.0095]} />
-        <Content map={img2}>
-          <Html>
-            <MountEffect
-              onEnd={() => (
-                <MountEffect>
-                  <Subtitle>
-                    es una empresa constructora que hace realidad tus ideas
-                  </Subtitle>
-                </MountEffect>
-              )}
-            >
-              <Title primary>Betón</Title>
-            </MountEffect>
-          </Html>
-          {/* <Dom style={{ width: pixelWidth / (mobile ? 1 : 2), textAlign: "left" }} position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
+        <Helmet
+          position={[-contentMaxWidth / 2, 2, -2]}
+          scale={[0.0095, 0.0095, 0.0095]}
+        />
+        {/* <Content map={img2}> */}
+        <Html style={{ marginTop: "5%", textAlign: "center" }}>
+          <MountEffect
+            onEnd={() => (
+              <MountEffect>
+                <Subtitle>50 años de experiencia</Subtitle>
+              </MountEffect>
+            )}
+          >
+            <Title primary>Betón</Title>
+          </MountEffect>
+        </Html>
+        {/* <Dom style={{ width: pixelWidth / (mobile ? 1 : 2), textAlign: "left" }} position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
               The substance can take you to heaven but it can also take you to hell.
             </Dom> */}
-        </Content>
+        {/* </Content> */}
       </Block>
       {/* Second section */}
       <Block factor={2.0} offset={1}>
+        <Html style={{ margin: "5%", textAlign: "left" }}>
+          <Title>Construimos tus ideas</Title>
+        </Html>
         <Content map={img1}>
           <Building scale={1 / 2575} />
-          <Html>
-            <h1>Desde los cimientos</h1>
-          </Html>
           {/* <Dom style={{ width: pixelWidth / (mobile ? 1 : 2), textAlign: "right" }} position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
               We’ve found that the people whose EEG doesn’t show any alpha-wave activity when they’re relaxed aren’t likely to respond significantly to the substance.
             </Dom> */}
         </Content>
+        <Block factor={2.5} offset={1.5}>
+          <Content left map={img5}></Content>
+        </Block>
       </Block>
       {/* Stripe */}
       <Block factor={-1.0} offset={2}>
+        <Html style={{ textAlign: "right", margin: "5%" }}>
+          <Title>Desde los cimientos</Title>
+        </Html>
         <Content left map={img4}></Content>
         <Stripe />
       </Block>
@@ -129,6 +136,11 @@ export function Pages() {
               Education and enlightenment.
             </Dom> */}
         </Content>
+      </Block>
+      <Block factor={1.5} offset={4}>
+      <Html style={{ textAlign: "center" }}>
+          <Subtitle>Contanos tu idea</Subtitle>
+        </Html>
       </Block>
     </>
   );

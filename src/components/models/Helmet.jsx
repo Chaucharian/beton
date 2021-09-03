@@ -26,6 +26,7 @@ export default function Helmet(props) {
           receiveShadow
           geometry={nodes["11188028"].geometry}
           material={nodes["11188028"].material}
+          onPointerMove={() => console.log("MOVING")}
           onPointerOver={() => {
             console.log(" EA ");
             set(true);

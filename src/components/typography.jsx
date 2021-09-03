@@ -16,9 +16,9 @@ letter-spacing: -4px;
 export const Subtitle = styled.h2`${({ primary }) => `
 font-family: 'Inter', sans-serif;
 font-style: normal;
-font-weight: 400;
+font-weight: 200;
 color: ${primary ? COLORS.primary : COLORS.secondary };
-font-size: 62px;
+font-size: 40px;
 line-height: 62px;
 letter-spacing: -2px;
 margin-top: 0;
