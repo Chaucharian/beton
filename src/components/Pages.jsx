@@ -8,6 +8,7 @@ import "../utils/CustomMaterial";
 import { Html } from "./Html";
 import { Helmet, Building } from "./models";
 import { Title, Subtitle } from "./typography";
+import ArrowDown from './ArrowDown';
 import MountEffect from "./MountEffect";
 import { styled } from "styled-components";
 
@@ -77,7 +78,7 @@ export function Pages() {
   const [img1, img2, img3, img4, img5, img6] = textures.map(
     (texture) => ((texture.minFilter = LinearFilter), texture)
   );
-  const { contentMaxWidth, mobile } = useBlock();
+  const { contentMaxWidth, mobile, sectionHeight } = useBlock();
   const aspect = 1.75;
   const pixelWidth = contentMaxWidth * state.zoom;
   return (
@@ -88,6 +89,9 @@ export function Pages() {
           position={[-contentMaxWidth / 2, 2, -2]}
           scale={[0.0095, 0.0095, 0.0095]}
         />
+        {/* <Building 
+        position={[contentMaxWidth / 6, -4, -2]}
+        scale={1 / 8000} /> */}
         {/* <Content map={img2}> */}
         <Html style={{ marginTop: "5%", textAlign: "center" }}>
           <MountEffect
@@ -99,37 +103,45 @@ export function Pages() {
           >
             <Title primary>Betón</Title>
           </MountEffect>
+          <div style={{ position: 'absolute', left: "50%", bottom: "10%" }}>
+          <ArrowDown />
+          </div>
         </Html>
-        {/* <Dom style={{ width: pixelWidth / (mobile ? 1 : 2), textAlign: "left" }} position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
-              The substance can take you to heaven but it can also take you to hell.
-            </Dom> */}
         {/* </Content> */}
       </Block>
+
       {/* Second section */}
       <Block factor={2.0} offset={1}>
         <Html style={{ margin: "5%", textAlign: "left" }}>
-          <Title>Construimos tus ideas</Title>
+        <MountEffect>
+          <Subtitle>Diseñamos tus ideas</Subtitle>
+        </MountEffect>
         </Html>
-        <Content map={img1}>
+        <Building 
+         position={[contentMaxWidth, -4, -10]}
+        scale={1 / 2575} 
+        />
+        {/* <Content map={img1}>
           <Building scale={1 / 2575} />
-          {/* <Dom style={{ width: pixelWidth / (mobile ? 1 : 2), textAlign: "right" }} position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
-              We’ve found that the people whose EEG doesn’t show any alpha-wave activity when they’re relaxed aren’t likely to respond significantly to the substance.
-            </Dom> */}
-        </Content>
-        <Block factor={2.5} offset={1.5}>
+        </Content> */}
+        {/* <Block factor={2.5} offset={1.5}>
           <Content left map={img5}></Content>
-        </Block>
+        </Block> */}
       </Block>
+
       {/* Stripe */}
       <Block factor={-1.0} offset={2}>
         <Html style={{ textAlign: "right", margin: "5%" }}>
-          <Title>Desde los cimientos</Title>
+          <Subtitle>Desde los cimientos</Subtitle>
         </Html>
         <Content left map={img4}></Content>
         <Stripe />
       </Block>
       {/* Last section */}
       <Block factor={1.5} offset={3}>
+      <Html style={{ textAlign: "right", margin: "5%" }}>
+          <Subtitle>Con el personal más capacitado</Subtitle>
+        </Html>
         <Content left map={img3}>
           <Block factor={-0.5}>{/* <Cross /> */}</Block>
           {/* <Dom prepend style={{ width: pixelWidth / (mobile ? 1 : 2), textAlign: "left" }} position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>

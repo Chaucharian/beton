@@ -6,6 +6,7 @@ import { Physics, usePlane, useSphere } from "@react-three/cannon";
 import { useBlock } from "../Block";
 import state from "../../store";
 import lerp from "lerp";
+import { useWobble } from "../hooks";
 
 export default function Helmet(props) {
   const { nodes, materials } = useGLTF("/static/helmet.glb");
@@ -42,32 +43,3 @@ export default function Helmet(props) {
       </group>
   );
 }
-
-function useWobble(factor = 1, fn = "sin", cb) {
-  const ref = useRef();
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    ref.current.position.y = Math[fn](t) * factor;
-    if (cb) cb(t, ref.current);
-  });
-  return ref;
-}
-
-export const Building = () => {
-  // const fbx = useFBX("house.fbx");
-  const fbx = useLoader(GLTFLoader, "static/helmet.glb");
-  const ref = useRef();
-  const { viewportHeight } = useBlock();
-  useFrame(() => {
-    const curTop = state.top.current;
-    const curY = ref.current?.rotation.z;
-    const nextY = (curTop / ((state.pages - 1) * viewportHeight)) * Math.PI;
-    ref.current.rotation.z = lerp(curY, nextY, 0.1);
-  });
-
-  return (
-    <Suspense fallback={null}>
-      <primitive ref={ref} object={fbx.scene} scale={0.005} />
-    </Suspense>
-  );
-};
