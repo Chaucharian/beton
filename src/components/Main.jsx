@@ -8,8 +8,10 @@ import React, {
 } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Pages } from "../components/Pages";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls, useProgress } from "@react-three/drei";
 import state from "../store";
+import { Html } from "./Html";
+import Loader from './Loader';
 
 const Portal = createContext(null);
 
@@ -22,7 +24,9 @@ export const usePortal = () => {
   return context;
 };
 
+
 export default function App() {
+  const { progress, errors } = useProgress();
   const [events, setEvents] = useState();
 
   const scrollArea = useRef();
@@ -30,28 +34,29 @@ export default function App() {
 
   const onScroll = (e) => (state.top.current = e.target.scrollTop);
   useEffect(() => void onScroll({ target: scrollArea.current }), []);
+
   return (
     <>
-      <Canvas
-        className="canvas"
-        orthographic
-        camera={{ zoom: state.zoom, position: [0, 0, 500] }}
-        onCreated={({ gl, events }) => {
-          // gl.setClearColor('white')
-          // gl.toneMappingExposure = 2.5
-          // gl.toneMappingWhitePoint = 1
-          // Export canvas events, we will put them onto the scroll area
-          setEvents(events);
-        }}
-      >
-        <Portal.Provider value={domContent}>
-          <Suspense fallback="i">
+      <Suspense fallback={<Loader />}>
+        <Canvas
+          className="canvas"
+          orthographic
+          camera={{ zoom: state.zoom, position: [0, 0, 500] }}
+          onCreated={({ gl, events }) => {
+            // gl.setClearColor('white')
+            // gl.toneMappingExposure = 2.5
+            // gl.toneMappingWhitePoint = 1
+            // Export canvas events, we will put them onto the scroll area
+            setEvents(events);
+          }}
+        >
+          <Portal.Provider value={domContent}>
             <Pages />
             <OrbitControls />
             <Environment preset="sunset" />
-          </Suspense>
-        </Portal.Provider>
-      </Canvas>
+          </Portal.Provider>
+        </Canvas>
+      </Suspense>
       <div
         className="scrollArea"
         ref={scrollArea}

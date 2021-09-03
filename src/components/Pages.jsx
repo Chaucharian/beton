@@ -7,6 +7,8 @@ import state from "../store";
 import "../utils/CustomMaterial";
 import { Html } from "./Html";
 import { Helmet, Building } from "./models";
+import { Title, Subtitle } from "./typography";
+import MountEffect from "./MountEffect";
 
 function Plane({ color = "white", map, ...props }) {
   const { viewportHeight, offsetFactor } = useBlock();
@@ -82,10 +84,17 @@ export function Pages() {
         <Helmet scale={[0.0095, 0.0095, 0.0095]} />
         <Content map={img2}>
           <Html>
-            <h1>
-              <span style={{ color: "#da0d07" }}>Betón</span>
-            </h1>
-            <h2> es una empresa constructora que hace realidad tus ideas</h2>
+            <MountEffect
+              onEnd={() => (
+                <MountEffect>
+                  <Subtitle>
+                    es una empresa constructora que hace realidad tus ideas
+                  </Subtitle>
+                </MountEffect>
+              )}
+            >
+              <Title primary>Betón</Title>
+            </MountEffect>
           </Html>
           {/* <Dom style={{ width: pixelWidth / (mobile ? 1 : 2), textAlign: "left" }} position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
               The substance can take you to heaven but it can also take you to hell.
@@ -95,7 +104,7 @@ export function Pages() {
       {/* Second section */}
       <Block factor={2.0} offset={1}>
         <Content map={img1}>
-          <Building scale={1/2575} />
+          <Building scale={1 / 2575} />
           <Html>
             <h1>Desde los cimientos</h1>
           </Html>
@@ -106,8 +115,7 @@ export function Pages() {
       </Block>
       {/* Stripe */}
       <Block factor={-1.0} offset={2}>
-      <Content left map={img4}>
-        </Content>
+        <Content left map={img4}></Content>
         <Stripe />
       </Block>
       {/* Last section */}

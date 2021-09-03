@@ -3,7 +3,7 @@ import { useThree } from "@react-three/fiber";
 import { Html as HTML } from "@react-three/drei";
 import { usePortal } from "./Main";
 
-export function Html({ className, style, children, portal: parentPortal }) {
+export function Html({ className, style, children, portal: parentPortal, props }) {
   const { size } = useThree();
   const contextPortal = usePortal();
   const portal = parentPortal === undefined ? contextPortal : parentPortal;
@@ -22,6 +22,7 @@ export function Html({ className, style, children, portal: parentPortal }) {
         width: size.width,
         height: size.height,
       }}
+      {...props}
     >
       <div className={className} style={style}>
         {children}
