@@ -9,6 +9,7 @@ import { Html } from "./Html";
 import { Helmet, Building } from "./models";
 import { Title, Subtitle } from "./typography";
 import MountEffect from "./MountEffect";
+import { styled } from 'styled-components';
 
 function Plane({ color = "white", map, ...props }) {
   const { viewportHeight, offsetFactor } = useBlock();
@@ -69,6 +70,8 @@ function Stripe() {
   );
 }
 
+// const Container = styled
+
 export function Pages() {
   const textures = useLoader(TextureLoader, state.images);
   const [img1, img2, img3, img4, img5, img6] = textures.map(
@@ -81,7 +84,7 @@ export function Pages() {
     <>
       {/* First section */}
       <Block factor={1.5} offset={0}>
-        <Helmet scale={[0.0095, 0.0095, 0.0095]} />
+        <Helmet position={[-contentMaxWidth / 2,2, -2]} scale={[0.0095, 0.0095, 0.0095]} />
         <Content map={img2}>
           <Html>
             <MountEffect
